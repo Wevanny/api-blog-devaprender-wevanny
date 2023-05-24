@@ -6,7 +6,7 @@ import jwt
 app = Flask(__name__)
 # Criar uma instância de SQLAlchemy.
 app.config['SECRET_KEY'] = 'FSD2323f#$!SAj'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:O4WlJmo2Gu8gKJvR7m9H@containers-us-west-19.railway.app:7212/railway'
 # Se fosse conctar a um banco de dados online usaríamos sua referência acima no lugar de sqlite:///blog.db.
 #Nâo sabendo como fazer consultar no Google: connection string oracle, connecting string sql server, 
 #connecting "nome do banco de dados".
@@ -35,7 +35,7 @@ class Autor(db.Model):
     postagens = db.relationship('Postagem')
 
 def inicializar_banco():
-    #with app.app_context():
+    with app.app_context():
         # Executar o comando para criar o banco de dados.
         db.drop_all()
         db.create_all()
